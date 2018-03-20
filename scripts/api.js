@@ -1,26 +1,20 @@
 
 $(document).ready(function () {
-    var info = document.getElementById("showData");
-    var btn = document.getElementById("btn");
-    var searchBtn = document.getElementById("searchBtn");
-    var searchBox = document.getElementById("searchBox");
-    //var myRequest = null;
     var jsonData = null;
 
-    var url2 = "https://nackowskis.azurewebsites.net/api/Auktion/200/";
-    var url = 'https://learnwebcode.github.io/json-example/animals-1.json';
+    var url = "https://nackowskis.azurewebsites.net/api/Auktion/200/";
 
     /******************************************************************/
 // ReSharper disable once JoinDeclarationAndInitializerJs
     var populateTable;
     var loadAjaxCall = function () {
         var myRequest = new XMLHttpRequest();
-        myRequest.open('GET', url2);
+        myRequest.open('GET', url);
         myRequest.onload = function () {
             jsonData = JSON.parse(myRequest.responseText);
             
             //makeTable(jsonData);
-            anotherTable();
+            createTable();
             //populateTable();
         };
         myRequest.send();
@@ -85,7 +79,7 @@ $(document).ready(function () {
         //container.appendChild(table);
     };
 
-    var anotherTable = function () {
+    var createTable = function () {
         var col = [];
         for (var i = 0; i < jsonData.length; i++) {
             for (var key in jsonData[i]) {
@@ -101,13 +95,7 @@ $(document).ready(function () {
         table.setAttribute("class", "tablesorter");
         table.classList.add('table');
         table.classList.add('table-hover');
-
-
         table.setAttribute("id", "myTable");
-
-
-        //table.border = "2px";
-        //table.cellSpacing = "5px";
 
         var thead = table.createTHead();
 
@@ -135,18 +123,8 @@ $(document).ready(function () {
             }
         }
 
-        //var tFoot = table.createTFoot();
-        //row = tFoot.insertRow(-1);
-        //for (var i = 0; i < 3; i++) {
-        //    cell = row.insertCell(-1);
-        //    cell.innerHTML = "Foot" + (i + 1);
-        //}
-
-        //var container = document.getElementById("showData");
         var myContainer = document.getElementById("myContainer");
         myContainer.appendChild(table);
-        //container.appendChild(table);
-
         $(function () {
             $("table")
                 .tablesorter({ widthFixed: true, widgets: ['zebra'] })
@@ -202,9 +180,6 @@ $(document).ready(function () {
         divContainer.innerHTML = "";
         divContainer.appendChild(table);
     };
-
-    //btn.addEventListener("click", makeTable);
-
     window.onload = loadAjaxCall;
 });
 
