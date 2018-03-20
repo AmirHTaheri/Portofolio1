@@ -8,7 +8,7 @@
             box-sizing: border-box;
         }
 
-        #myInput {
+        /*#myInput {
             background-image: url('icons/search.png');
             background-position: 10px 10px;
             background-repeat: no-repeat;
@@ -17,7 +17,7 @@
             padding: 12px 20px 12px 40px;
             border: 1px solid #ddd;
             margin-bottom: 12px;
-        }
+        }*/
 
         #myTable {
             border-collapse: collapse;
@@ -40,7 +40,11 @@
 <body>
     <div id="myContainer" class="container">
         <h1>Auction Paging and Sorting Demo</h1>
-        <input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search for names.." title="Type in a name">
+        <input type="text" id="myInput" onkeyup="searchFunction(id)" placeholder="Search for id.." title="Type in a id">
+        <input type="text" id="Titel" onkeyup="searchFunction(id)" placeholder="Search for Titel.." title="Type in a title">
+        <input type="text" id="Beskrivning" onkeyup="searchFunction(id)" placeholder="Search for Description.." title="Type in a description">
+        <input type="text" id="Gruppkod" onkeyup="searchFunction(id)" placeholder="Search for Group code.." title="Type in a code">
+        <input type="text" id="Price" onkeyup="searchFunction(id)" placeholder="Search for Price.." title="Type in a price">
 
         <div id="pager" class="pager">
             <form>
@@ -64,15 +68,39 @@
     <script src="scripts/jquery.tablesorter.js"></script>
     <script src="scripts/jquery.tablesorter.pager.js"></script>
     <script>
-        function searchFunction() {
+        function searchFunction(id) {
             var td, i;
-            var input = document.getElementById("myInput");
+            var input = document.getElementById(id);
             var filter = input.value.toUpperCase();
             var table = document.getElementById("myTable");
             var tr = table.getElementsByTagName("tr");
+            var index = 0;
+            //debugger;
+            switch(id) {
+                case "myInput":
+                    index = 0;
+                    break;
+                case "Titel":
+                    index = 1;
+                    break;
+                case "Beskrivning":
+                    index = 2;
+                    break;
+                case "Gruppkod":
+                    index = 5;
+                    break;
+                case "Price":
+                    index = 6;
+                    break;
+                default:
+                    index = 0;
+                    break;
+
+            }
 
             for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[0];
+                
+                td = tr[i].getElementsByTagName("td")[index];
                 if (td) {
                     if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
                         tr[i].style.display = "";
@@ -81,26 +109,26 @@
                     }
                 }
             }
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[1];
-                if (td) {
-                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                }
-            }
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[2];
-                if (td) {
-                    if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                }
-            }
+            //for (i = 0; i < tr.length; i++) {
+            //    td = tr[i].getElementsByTagName("td")[1];
+            //    if (td) {
+            //        if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            //            tr[i].style.display = "";
+            //        } else {
+            //            tr[i].style.display = "none";
+            //        }
+            //    }
+            //}
+            //for (i = 0; i < tr.length; i++) {
+            //    td = tr[i].getElementsByTagName("td")[2];
+            //    if (td) {
+            //        if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            //            tr[i].style.display = "";
+            //        } else {
+            //            tr[i].style.display = "none";
+            //        }
+            //    }
+            //}
 
         }
     </script>
