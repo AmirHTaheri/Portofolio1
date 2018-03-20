@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>jQuery Table Paging and Sorting Plugin</title>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="css/jQuery.sortpaginate.css" rel="stylesheet" />
+    <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="jquery-3.3.1.min.js"></script>
+    <script src="jquery.tablesorter.pager.js"></script>
+    <script src="api.js"></script>
+
+    <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <!-- <style>
+      body {
+        background-color: #fafafa;
+      }
+
+      .container {
+        margin: 150px auto;
+      }
+    </style> -->
+
+
+</head>
+
+
+<body>
+
+    <header>
+        <button type="button" id="btn" name="button">Ajax and Jason</button>
+        <input type="text" id="searchBox" name="" value="">
+        <button type="button" id="searchBtn" name="button">Search</button>
+    </header>
+    <div class="container">
+        <div class="sp_wrapper">
+            <div class="sp_table">
+                <div id="showData"></div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36251023-1']);
+    _gaq.push(['_setDomainName', 'jqueryscript.net']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script');
+      ga.type = 'text/javascript';
+      ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(ga, s);
+    })();
+    </script>
+
+</body>
+<!--<script src="css/jquery-1.12.0.min.js"></script>
+<script src="jQuery.tablesorter.pager.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("table")
+      .tablesorter({
+        widthFixed: true,
+        widgets: ['zebra']
+      })
+      .tablesorterPager({
+        container: $("#pager")
+      });
+  });
+</script>-->
+
+
+</html>
