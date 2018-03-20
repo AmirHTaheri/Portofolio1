@@ -7,7 +7,7 @@ $(document).ready(function () {
     //var myRequest = null;
     var jsonData = null;
 
-    var url2 = "http://nackowskis.azurewebsites.net/api/Auktion/200/";
+    var url2 = "https://nackowskis.azurewebsites.net/api/Auktion/200/";
     var url = 'https://learnwebcode.github.io/json-example/animals-1.json';
 
     /******************************************************************/
