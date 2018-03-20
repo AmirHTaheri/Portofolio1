@@ -12,9 +12,71 @@ $(document).ready(function () {
         myRequest.open('GET', url);
         myRequest.onload = function () {
             jsonData = JSON.parse(myRequest.responseText);
+            
+            //makeTable(jsonData);
             createTable();
+            //populateTable();
         };
         myRequest.send();
+    };
+    populateTable = function () {
+        var col = [];
+        for (var i = 0; i < jsonData.length; i++) {
+            for (var key in jsonData[i]) {
+                if (col.indexOf(key) === -1) {
+                    col.push(key);
+                }
+
+            }
+        }
+
+        // Create table
+        
+        var table = document.getElementById("example");
+        //table.setAttribute("class", "tablesorter");
+        //table.setAttribute("id", "myTable");
+
+
+        //table.border = "2px";
+        //table.cellSpacing = "5px";
+
+        //var thead = table.createTHead();
+
+
+        //var row = thead.insertRow(-1);
+        /*var cell;
+
+        for (var i = 0; i < col.length; i++) {
+            cell = row.insertCell(-1);
+            cell.innerHTML = col[i];
+        }
+        */
+        var row;
+        var cell;
+
+        var tBody = document.createElement("tbody");
+        table.appendChild(tBody);
+
+        for (var j = 0; j < jsonData.length; j++) {
+            row = tBody.insertRow(-1);
+            for (var i = 0; i < col.length; i++) {
+                cell = row.insertCell(-1);
+                cell.innerHTML = jsonData[j][col[i]];
+
+            }
+        }
+
+        //var tFoot = table.createTFoot();
+        //row = tFoot.insertRow(-1);
+        //for (var i = 0; i < 3; i++) {
+        //    cell = row.insertCell(-1);
+        //    cell.innerHTML = "Foot" + (i + 1);
+        //}
+
+        //var container = document.getElementById("showData");
+        //var myContainer = document.getElementById("myContainer");
+        //myContainer.appendChild(table);
+        //container.appendChild(table);
     };
 
     var createTable = function () {
@@ -176,47 +238,17 @@ function sortTable(n) {
     }
 }
 
-function searchFunction(id) {
-    var td, i;
-    var input = document.getElementById(id);
-    var filter = input.value.toUpperCase();
-    var table = document.getElementById("myTable");
-    var tr = table.getElementsByTagName("tr");
-    var index = 0;
-    //debugger;
-    switch (id) {
-        case "myInput":
-            index = 0;
-            break;
-        case "Titel":
-            index = 1;
-            break;
-        case "Beskrivning":
-            index = 2;
-            break;
-        case "Gruppkod":
-            index = 5;
-            break;
-        case "Price":
-            index = 6;
-            break;
-        default:
-            index = 0;
-            break;
 
-    }
-
-    for (i = 0; i < tr.length; i++) {
-
-        td = tr[i].getElementsByTagName("td")[index];
-        if (td) {
-            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                tr[i].style.display = "";
-            } else {
-                tr[i].style.display = "none";
-            }
-        }
-    }
-
-}
+//searchBtn.addEventListener("click", function(){
+//  info.innerHTML = "";
+//  var mystring = "";
+//  for (var i = 0; i < jsonData.length; i++) {
+//    if (jsonData[i].species == searchBox.value){
+//      mystring += "<p>" + jsonData[i].name + " is a " + jsonData[i].species + ".</p>";
+//    }
+//  }
+//  if(mystring == "")
+//    mystring = "Not found!"
+//  info.insertAdjacentHTML('beforeend', mystring);
+//});
 
