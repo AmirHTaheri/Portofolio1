@@ -1,12 +1,12 @@
 
 $(document).ready(function () {
     var jsonData = null;
-
+    var col = [];
     var url = "https://nackowskis.azurewebsites.net/api/Auktion/200/";
 
     /******************************************************************/
 // ReSharper disable once JoinDeclarationAndInitializerJs
-    var populateTable;
+    var createTable;
     var loadAjaxCall = function () {
         var myRequest = new XMLHttpRequest();
         myRequest.open('GET', url);
@@ -16,15 +16,17 @@ $(document).ready(function () {
         };
         myRequest.send();
     };
+    createTable = function () {
+        var i;
+        for (i = 0; i < jsonData.length; i++) {
+            let data = jsonData[i];
+            for (var key in data) {
+                if (data.hasOwnProperty(key)) {
+                    if (col.indexOf(key) === -1) {
+                        col.push(key);
+                    }
 
-    var createTable = function () {
-        var col = [];
-        for (var i = 0; i < jsonData.length; i++) {
-            for (var key in jsonData[i]) {
-                if (col.indexOf(key) === -1) {
-                    col.push(key);
                 }
-
             }
         }
 
@@ -33,15 +35,29 @@ $(document).ready(function () {
         table.setAttribute("class", "tablesorter");
         table.classList.add('table');
         table.classList.add('table-hover');
+        table.classList.add('table-responsive');
+
         table.setAttribute("id", "myTable");
+        
 
         var thead = table.createTHead();
+        thead.setAttribute("class", "thead-light");
 
+        var input;
+        var placeholder = "Search for";
 
         var row = thead.insertRow(-1);
         var cell;
 
-        for (var i = 0; i < col.length; i++) {
+        for (i = 0; i < col.length; i++) {
+            //input = document.createElement("input");
+            //input.setAttribute("class", "form-control");
+            //input.setAttribute("onkeyup", "searchFunction(id)");
+            //input.setAttribute("id", col[i]);
+            //input.setAttribute("placeholder", placeholder + " " + col[i]);
+            
+            
+
             cell = row.insertCell(-1);
             cell.innerHTML = col[i];
             // Sorting from header
@@ -54,7 +70,7 @@ $(document).ready(function () {
 
         for (var j = 0; j < jsonData.length; j++) {
             row = tBody.insertRow(-1);
-            for (var i = 0; i < col.length; i++) {
+            for (i = 0; i < col.length; i++) {
                 cell = row.insertCell(-1);
                 cell.innerHTML = jsonData[j][col[i]];
 
@@ -70,60 +86,12 @@ $(document).ready(function () {
 
         });
     };
-
-    var makeTable = function () {
-        var col = [];
-        for (var i = 0; i < jsonData.length; i++) {
-            for (var key in jsonData[i]) {
-                if (col.indexOf(key) === -1) {
-                    col.push(key);
-                }
-            }
-        }
-        //debugger
-
-        // CREATE DYNAMIC TABLE.
-        var table = document.createElement("table");
-        table.setAttribute("class", "tablesorter");
-
-        table.border = "6px";
-        table.cellSpacing = "5px";
-
-        var thead = document.createElement("thead");
-
-        //table.classList.add('table-bordered');
-        //table.classList.add('table-striped');
-        // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
-        var tr = table.insertRow(-1); // TABLE ROW.
-
-        for (var i = 0; i < col.length; i++) {
-            var th = document.createElement("th"); // TABLE HEADER.
-            th.innerHTML = col[i];
-            tr.appendChild(th);
-        }
-
-        // ADD JSON DATA TO THE TABLE AS ROWS.
-        for (var i = 0; i < jsonData.length; i++) {
-
-            tr = table.insertRow(-1);
-
-            for (var j = 0; j < col.length; j++) {
-                var tabCell = tr.insertCell(-1);
-                tabCell.innerHTML = jsonData[i][col[j]];
-            }
-        }
-
-        // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
-        var divContainer = document.getElementById("showData");
-        divContainer.innerHTML = "";
-        divContainer.appendChild(table);
-    };
     window.onload = loadAjaxCall;
 });
 
 function sortTable(n) {
-    var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
-    table = document.getElementById("myTable");
+    var rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+    var table = document.getElementById("myTable");
     switching = true;
     //Set the sorting direction to ascending:
     dir = "asc";
@@ -144,13 +112,13 @@ function sortTable(n) {
             y = rows[i + 1].getElementsByTagName("TD")[n];
             /*check if the two rows should switch place,
             based on the direction, asc or desc:*/
-            if (dir == "asc") {
+            if (dir === "asc") {
                 if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
                     //if so, mark as a switch and break the loop:
                     shouldSwitch = true;
                     break;
                 }
-            } else if (dir == "desc") {
+            } else if (dir === "desc") {
                 if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
                     //if so, mark as a switch and break the loop:
                     shouldSwitch = true;
@@ -168,7 +136,7 @@ function sortTable(n) {
         } else {
             /*If no switching has been done AND the direction is "asc",
             set the direction to "desc" and run the while loop again.*/
-            if (switchcount == 0 && dir == "asc") {
+            if (switchcount === 0 && dir === "asc") {
                 dir = "desc";
                 switching = true;
             }
@@ -182,8 +150,7 @@ function searchFunction(id) {
     var filter = input.value.toUpperCase();
     var table = document.getElementById("myTable");
     var tr = table.getElementsByTagName("tr");
-    var index = 0;
-    //debugger;
+    var index = 0; //debugger;
     switch (id) {
         case "myInput":
             index = 0;
@@ -193,6 +160,9 @@ function searchFunction(id) {
             break;
         case "Beskrivning":
             index = 2;
+            break;
+        case "SlutDatum":
+            index = 4;
             break;
         case "Gruppkod":
             index = 5;
