@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Aboreal</title>
-
+    <title>Auctions</title>
+    <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />-->
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Tangerine:400,700%7cRoboto:300,400,500%7cMegrim%7cPoiret+One" rel="stylesheet">
 
@@ -17,20 +17,30 @@
     <!-- Social Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <script src="Aboreal.js"></script>
-    
+    <script src="scripts/jquery-latest.js"></script>
+    <script src="scripts/api.js"></script>
+    <script src="scripts/jquery.tablesorter.js"></script>
+    <script src="scripts/jquery.tablesorter.pager.js"></script>
+    <script src="scripts/api.js"></script>
+
+    <style>
+        div#pager .myPager {
+            position: relative;
+        }
+    </style>
+
 </head>
 
 <body>
     <nav class="navigation-wrapper">
         <div class="navigation-content">
             <div class="logo-wrapper">
-                <a href="index.html"><img src="pics/Abo-color.png" class="logo" alt="Logo"></a>
+                <a href="index.html"><img src="pics/logo/auction-logo.png" class="logo" alt="Logo"></a>
             </div>
             <ul class="navigation-menu" id="content-toggle">
-                <li><a href="#mission">Start</a></li>
-                <li><a href="#pricing">Auctions</a></li>
-                <li><a href="#themes">Adds</a></li>
+                <li><a href="#Start">Start</a></li>
+                <li><a href="#auctions">Auctions</a></li>
+                <li><a href="#Adds">Adds</a></li>
                 <li><a href="#contact">About us</a></li>
             </ul>
             <div id="mobile-menu">
@@ -46,96 +56,61 @@
     </nav>
 
     <header class="header-wrapper">
-        <div class="header-content">
-            <h1>Arboreal</h1>
-            <h2>Green spaces create green ideas!</h2>
-        </div>
+        <!--<div class="header-content">
+            <h1>Nakowski</h1>
+            <h2>The best auction in town</h2>
+        </div>-->
     </header>
 
     <main class="page-wrapper">
-        <section class="section-wrapper mission-wrapper" id="mission">
-            <h2>Mission</h2>
-            <p>Arboreal revolutionizes the way you think about plants in an office environment. Arboreal isn't just a a delivery service for plants, it's a delivery service for new ideas. Arboreal makes it easy to keep your workplace fresh and oxygenated.</p>
+        <section class="section-wrapper mission-wrapper" id="Start">
+            <h2>Auction</h2>
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                when an unknown printer took a galley of type and scrambled it to make a type
+                specimen boo.
+            </p>
         </section>
 
-        <div class="section-wrapper picture-wrapper">
-            <div class="section-row">
-                <div class="col-1-3 hide-phone">
-                    <img height="210" src="pics/Content/go02.jpg" alt="Picture of an office">
-                </div>
-                <div class="col-1-3 hide-phone">
-                    <img height="210" src="pics/Content/go03.jpg" alt="Picture of a plant">
-                </div>
-                <div class="col-1-3">
-                    <img height="210" src="pics/Content/go04.jpeg" alt="Picture of an office">
-                </div>
-            </div>
-            <div class="section-row">
-                <div class="col-1-3 hide-phone">
-                    <img height="210" src="pics/Content/go05.jpg" alt="Picture of chairs and a plant">
-                </div>
-                <div class="col-1-3 hide-phone">
-                    <img height="210" src="pics/Content/go06.jpg" alt="Picture of an office">
-                </div>
-                <div class="col-1-3">
-                    <img height="210" src="pics/Content/go07.jpg" alt="Picture of a plant in a round vase">
-                </div>
-            </div>
-        </div>
+        <section class="section-wrapper" id="auctions">
+            <h2>Items</h2>
+        </section>
 
-        <section class="section-wrapper pricing-wrapper" id="pricing">
-            <h2>Pricing</h2>
-            <div class="section-row">
-                <div class="col-1-3 pricing-content">
-                    <h3>Standard</h3>
-                    <p>Watering not included</p>
-                    <p>No change of dead plants, monthly plant change</p>
-                </div>
-                <div class="col-1-3 pricing-content">
-                    <h3>Premium</h3>
-                    <p>Watering included</p>
-                    <p>Exchange of dead plants included, monthly plant change</p>
-                </div>
-                <div class="col-1-3 pricing-content">
-                    <h3>Exclusive</h3>
-                    <p>Web-controlled automated watering system included</p>
-                    <p>Change of dead plants included, weekly plant exchange</p>
-                    <p>Surveillence system for every plant. 24/7 support for emergencies</p>
-                    <p>Only locally grown plants. Exotic plants flown in by private jet</p>
-                </div>
+        <section class="section-wrapper" id="Adds">
+            <h2>Announcements</h2>
+
+            <div id="myContainer" class="container">
+                <input type="text" id="myInput" onkeyup="searchFunction(id)" placeholder="Search for id.." title="Type in a id">
+                <input type="text" id="Titel" onkeyup="searchFunction(id)" placeholder="Search for Titel.." title="Type in a title">
+                <input type="text" id="Beskrivning" onkeyup="searchFunction(id)" placeholder="Search for Description.." title="Type in a description">
+                <input type="text" id="SlutDatum" onkeyup="searchFunction(id)" placeholder="Search for StartDatum.." title="Type in a price">
+                <input type="text" id="Gruppkod" onkeyup="searchFunction(id)" placeholder="Search for Group code.." title="Type in a code">
+                <!--<input type="text" id="Price" onkeyup="searchFunction(id)" placeholder="Search for Price.." title="Type in a price">-->
+
+
             </div>
         </section>
 
-        <section class="section-wrapper themes-wrapper" id="themes">
-            <h2>Themes</h2>
-            <div class="section-row">
-                <div class="col-1-2">
-                    <h3>Aloha</h3>
-                    <p>This rich theme includes exotic coconuts spilling all over the floor combined with palm trees that hang down and are always in the way of your daily workflow. This theme is very complicated, suitable for complex startups with a unclear monetizing strategy.</p>
-                </div>
-                <div class="col-1-2">
-                    <img src="pics/Content/go08.jpg" alt="">
-                </div>
+        <section class="section-wrapper">
+            <div id="pager" class="pager myPager">
+                <form>
+                    <img src="icons/first.png" class="first" />
+                    <img src="icons/prev.png" class="prev" />
+                    <input type="text" class="pagedisplay" />
+                    <img src="icons/next.png" class="next" />
+                    <img src="icons/last.png" class="last" />
+                    <select class="pagesize">
+                        <option selected="selected" value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option value="40">40</option>
+                    </select>
+                </form>
             </div>
-            <div class="section-row">
-                <div class="col-1-2">
-                    <h3>Siberia</h3>
-                    <p>Dead plants everywhere. Plants sprayed with white color to give that cold secluded look.</p>
-                </div>
-                <div class="col-1-2">
-                    <img src="pics/Content/go10.jpg" alt="">
-                </div>
-            </div>
-            <div class="section-row">
-                <div class="col-1-2">
-                    <h3>Exotique Nørdic</h3>
-                    <p>Everything is pine and spruce. Get that Norrlands inland-look in your office. Comes with a Christmas Decoration Extension Pack for the first 100 subscribers (Bears not included).</p>
-                </div>
-                <div class="col-1-2">
-                    <img src="pics/Content/go11.jpg" alt="">
-                </div>
-            </div>
+
         </section>
+
 
         <section class="section-wrapper contact-wrapper" id="contact">
             <h2>Contact Us</h2>
@@ -194,6 +169,13 @@
             </div>
         </div>
     </footer>
+
+
+    <script src="scripts/jquery-latest.js"></script>
+    <script src="scripts/api.js"></script>
+    <script src="scripts/jquery.tablesorter.js"></script>
+    <script src="scripts/jquery.tablesorter.pager.js"></script>
+
 
 </body>
 
